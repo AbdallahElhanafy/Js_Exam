@@ -1,11 +1,4 @@
-
-
-
-
-$(document).ready(function() {
-    getHomeMeals('search.php?s=')
-
-});
+getHomeMeals('search.php?s=')
 
 $('#clickHome').click(function () {
     getHomeMeals('search.php?s=')
