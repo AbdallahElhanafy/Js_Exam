@@ -1,0 +1,207 @@
+.sidenav {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1003;
+    top: 0;
+    left: -250px;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+    position: relative;
+    top: 100px;
+    opacity: 0;
+}
+
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.sideNavOpen{
+
+    color: black;
+    font-size:30px;
+    cursor:pointer
+}
+
+#wrapper {
+    z-index: 1003;
+    position: relative;
+    left: 0;
+    transition: 0.5s;
+}
+
+.fixedBar {
+    z-index: 1003;
+    position: fixed;
+    left: 0;
+    transition: 0.5s;
+}
+
+.fixedBar img {
+    width: 60px;
+}
+
+#pageData{
+    width: 100% !important;
+}
+
+.meal-item img {
+    width: 100%;
+}
+
+
+.meal-item {
+
+    position: relative;
+    margin-bottom: 1rem;
+    min-width: 300px; /* adjust as needed */
+    width: 100%;
+    display: flex;
+    align-self: start;
+}
+
+.meal-name-box{
+    /*box-sizing: border-box;*/
+    justify-content: start;
+    background-color: rgba(255,255,255,0.7);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    border-radius: 10px !important;
+    overflow: hidden;
+    transition: all 0.5s ease-in-out; /* Add this line */
+
+}
+
+.rec-img {
+    border-radius: 10px !important;
+}
+
+.meal-item:hover {
+    cursor: pointer;
+}
+.meal-item:hover .meal-name-box {
+    height: 100%;
+
+}
+
+#clickHome:hover {
+    cursor: pointer;
+}
+
+.meal-name{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    align-self: center;
+    padding: 0.5rem;
+}
+
+.recipeImage {
+    border-radius: 0.4rem;
+    width: 100%;
+}
+p {
+    margin: 0!important;
+    padding: 0!important;
+}
+.ingredient{
+
+    background-color: teal;
+    padding: .5rem;
+    border-radius: .5rem;
+    margin: 0.6rem;
+}
+
+.search-bar {
+    z-index: 1002;
+    height: 0;
+    overflow: hidden;
+}
+
+.tag-class {
+    background-color: tomato; padding: 5px;
+    border-radius: 5px;
+    margin: 15px 10px;
+}
+
+.area-icons {
+    font-size: 3.5rem!important;
+}
+
+.cursor-hover:hover {
+    cursor: pointer;
+}
+
+.loader-holder{
+    z-index: 1001;
+}
+
+.loader-background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 1); /* adjust as needed */
+    z-index: 998;
+}
+
+.loader {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    z-index: 1000;
+    opacity: 100%;
+    background-color: black;
+
+    width: 48px;
+    height: 48px;
+    border: 5px solid #FFF;
+    border-bottom-color: #FF3D00;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+.form-holder {
+    position: absolute;
+
+    top: 50%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+}
+
+.form-holder span {
+    color: red;
+}

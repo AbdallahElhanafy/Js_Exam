@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Yummy</title>
+</head>
+<body class="bg-black">
+
+
+<div id="wrapper">
+    <div id="mySidenav" class="sidenav text-white d-flex flex-column justify-content-between ">
+        <div>
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a id="searchTag" href="#">Search</a>
+            <a id="categoryTag" href="#">Categories</a>
+            <a id="areaTag" href="#">Area</a>
+            <a id="ingTag" href="#">Ingredients</a>
+            <a id="contactTag" href="#">Contact</a>
+        </div>
+
+        <div class="nav-footer m-5">
+            <div class="social-icons d-flex flex-row gap-2">
+                <i class="fa-brands fa-facebook "></i>
+                <i class="fa-brands fa-twitter"></i>
+                <i class="fa-solid fa-globe"></i>
+            </div>
+            <div>
+                Copyright Â© 2019 All Rights
+                Reserved.
+            </div>
+        </div>
+    </div>
+
+    <div class="fixedBar bg-white  d-flex justify-content-between  h-100 align-items-center flex-column">
+        <img id="clickHome" src="images/logo.png" class="p-2" alt="logo">
+        <i id="openIcon" class="fa-solid fa-bars text-center  sideNavOpen" ></i>
+        <div class="navIcons text-black d-flex flex-column">
+            <i class="fa-solid fa-globe p-2"></i>
+            <i class="fa-solid fa-share-nodes p-2"></i>
+        </div>
+    </div>
+</div>
+
+<section id="home" class="w-100 ">
+
+    <div class="container  d-flex flex-column justify-content-center align-items-center ">
+    <div class="search-bar d-flex justify-content-center flex-row w-100">
+        <input id="searchName" class="w-50 m-3" type="text" placeholder="Search by Name" >
+        <input id="searchLetter" maxlength="1" type="text" class="w-50 m-3" placeholder="Search by First Letter">
+    </div>
+        <div class="loader-holder">
+            <div class="loader-background"></div>
+            <span class="loader"></span>
+        </div>
+    <div id="pageData" class="row my-3 ">
+
+    </div>
+
+
+    </div>
+</section>
+
+
+
+<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script src="Js/script.js"></script>
+</body>
+</html>
