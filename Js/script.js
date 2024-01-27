@@ -192,7 +192,7 @@ $('#searchTag').click(function () {
 
 $('#searchName').keyup(function () {
     let name = this.value
-    if (name.length >= 3) {
+    if (name.length >= 2) {
         searchMealByName(name)
     }
 
@@ -295,6 +295,14 @@ async function filterIngredients () {
     homeMeals.innerHTML = ingredientsBox;
     $('.loader-holder').hide('slow');
 }
+
+$('#searchLetter').keyup(function () {
+   let firstLetter = this.value
+    if (firstLetter.length !== 0 ){
+        getHomeMeals(`search.php?f=${firstLetter}`)
+    }
+
+})
 
 $('#ingTag').click(function () {
     closeNav()
