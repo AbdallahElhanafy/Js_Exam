@@ -1,46 +1,24 @@
+// load the page
 getHomeMeals('search.php?s=')
+//////
 
-$('#clickHome').click(function () {
-    getHomeMeals('search.php?s=')
-})
+// ***********************************************
 
+// Global variables
 
-$('#openIcon').click(function() {
-    if ($(this).hasClass('fa-bars')) {
-        openNav();
-    } else if ($(this).hasClass('fa-xmark')) {
-        closeNav();
-    }
-});
-
-function openNav() {
-    $("#wrapper").animate({left: "250px"}, 500, function() {
-        $('#openIcon').removeClass('fa-bars').addClass('fa-xmark');
-    });
-    $(".fixedBar").animate({left: "250px"}, 500);
-    $('#mySidenav').animate({left: '0'},500, function () {
-        $('#mySidenav a').each(function(index) {
-            $(this).delay(100*index).animate({top: '0', opacity: '1'}, 200);
-        });
-    })
-}
-
-function closeNav() {
-    $("#wrapper").animate({left: "0"}, 500, function() {
-        $('#openIcon').removeClass('fa-xmark').addClass('fa-bars');
-    });
-    $(".fixedBar").animate({left: "0"}, 500);
-    $('#mySidenav').animate({left: '-250'},500, function () {
-        $('#mySidenav a').each(function() {
-            $(this).css({top: '100px', opacity: '0'});
-        });
-    })
-
-}
-
-
+// ***********************************************
 let homeMeals = document.getElementById('pageData')
+let namePattern = /^[A-Za-z]{3,}$/;
+let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+let phonePattern = /^01[0125]\d{8}$/;
+let agePattern = /^\d{1,3}$/;
+let passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
+// ***********************************************
+
+// Fetching data functions
+
+// ***********************************************
 async function getHomeMeals (endPoint) {
     $('.loader-holder').show();
 
@@ -67,13 +45,13 @@ async function getHomeMeals (endPoint) {
         }
 
         homeMeals.innerHTML = meals;
+
     } catch (error) {
         console.error('Error:', error);
     }
+
     $('.loader-holder').hide('slow');
 }
-
-
 async function getMealRecipe (mealId) {
     $('.loader-holder').show();
     $('.search-bar').css('height', '0');
@@ -149,64 +127,9 @@ async function getMealRecipe (mealId) {
     homeMeals.innerHTML =meal;
     $('.loader-holder').hide('slow');
 }
-
-
-
-function getIngredients(meal) {
-    $('.search-bar').css('height', '0');
-
-    let ingredient = {
-        ingredientMeasure: String,
-        ingredientType: String,
-    }
-    let ingredients =[]
-
-
-    for (let i = 1; i <= 20; i++) {
-        if (meal[`strIngredient${i}`]) {
-            ingredient = {
-                ingredientMeasure: meal[`strMeasure${i}`],
-                ingredientType: meal[`strIngredient${i}`]
-            }
-            ingredients.push(ingredient);
-        } else {
-            break;
-        }
-    }
-
-    return ingredients;
-}
-
-$('#searchTag').click(function () {
-    closeNav();
-    $('#pageData').html('');
-    $('.search-bar').css('height', '100%');
-});
-
-$('#searchName').keyup(function () {
-    let name = this.value
-    if (name.length >= 2) {
-        searchMealByName(name)
-    }
-
-
-})
-
-$('#categoryTag').click(function () {
-    $('.search-bar').css('height', '0');
-
-    closeNav();
-    listCategories()
-})
-
-
-function searchMealByName (mealName) {
-    getHomeMeals(`search.php?s=${mealName}`)
-}
-
 async function listCategories () {
     $('.loader-holder').show();
-   let result = await  fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
+    let result = await  fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
     let data = await result.json()
     console.log(data)
 
@@ -227,19 +150,10 @@ async function listCategories () {
 
     }
 
-   homeMeals.innerHTML = categories;
+    homeMeals.innerHTML = categories;
     $('.loader-holder').hide('slow');
 
 }
-
-$('#areaTag').click(function () {
-    $('.search-bar').css('height', '0');
-
-    closeNav();
-    getAreas();
-
-})
-
 async  function getAreas () {
     $('.loader-holder').show();
     let areas = ``
@@ -262,7 +176,6 @@ async  function getAreas () {
     homeMeals.innerHTML = areas;
     $('.loader-holder').hide('slow');
 }
-
 async function filterIngredients () {
     $('.loader-holder').show();
     let ingredientsBox = ``
@@ -289,35 +202,38 @@ async function filterIngredients () {
     $('.loader-holder').hide('slow');
 }
 
-$('#searchLetter').keyup(function () {
-   let firstLetter = this.value
-    if (firstLetter.length !== 0 ){
-        getHomeMeals(`search.php?f=${firstLetter}`)
-    }
+// ***********************************************
 
-})
+// Helper functions
 
-$('#ingTag').click(function () {
-    closeNav()
-    filterIngredients()
-})
-
-$('#contactTag').click(function () {
+// ***********************************************
+function getIngredients(meal) {
     $('.search-bar').css('height', '0');
 
-    closeNav()
-    showForm()
-
-})
-
-let namePattern = /^[A-Za-z]{3,}$/;
-let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-let phonePattern = /^01[0125]\d{8}$/;
-let agePattern = /^\d{1,3}$/;
-let passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    let ingredient = {
+        ingredientMeasure: String,
+        ingredientType: String,
+    }
+    let ingredients =[]
 
 
+    for (let i = 1; i <= 20; i++) {
+        if (meal[`strIngredient${i}`]) {
+            ingredient = {
+                ingredientMeasure: meal[`strMeasure${i}`],
+                ingredientType: meal[`strIngredient${i}`]
+            }
+            ingredients.push(ingredient);
+        } else {
+            break;
+        }
+    }
 
+    return ingredients;
+}
+function searchMealByName (mealName) {
+    getHomeMeals(`search.php?s=${mealName}`)
+}
 function showForm() {
     homeMeals.innerHTML = `
 <form class="form-holder ">
@@ -411,7 +327,6 @@ function regexTest() {
         checkAllInputs();
     });
 }
-
 function checkAllInputs() {
     let isValidName = namePattern.test($('#nameInput').val());
     let isValidEmail = emailPattern.test($('#emailInput').val());
@@ -426,3 +341,98 @@ function checkAllInputs() {
         $('.btn').prop('disabled', true);
     }
 }
+
+// ***********************************************
+
+// Navigation functions
+
+// ***********************************************
+function openNav() {
+    $("#wrapper").animate({left: "250px"}, 500, function() {
+        $('#openIcon').removeClass('fa-bars').addClass('fa-xmark');
+    });
+    $(".fixedBar").animate({left: "250px"}, 500);
+    $('#mySidenav').animate({left: '0'},500, function () {
+        $('#mySidenav a').each(function(index) {
+            $(this).delay(100*index).animate({top: '0', opacity: '1'}, 200);
+        });
+    })
+}
+function closeNav() {
+    $("#wrapper").animate({left: "0"}, 500, function() {
+        $('#openIcon').removeClass('fa-xmark').addClass('fa-bars');
+    });
+    $(".fixedBar").animate({left: "0"}, 500);
+    $('#mySidenav').animate({left: '-250'},500, function () {
+        $('#mySidenav a').each(function() {
+            $(this).css({top: '100px', opacity: '0'});
+        });
+    })
+
+}
+
+// ***********************************************
+
+// Event listeners
+
+// ***********************************************
+$('#clickHome').click(function () {
+    getHomeMeals('search.php?s=')
+})
+$('#openIcon').click(function() {
+    if ($(this).hasClass('fa-bars')) {
+        openNav();
+    } else if ($(this).hasClass('fa-xmark')) {
+        closeNav();
+    }
+});
+$('#searchTag').click(function () {
+    closeNav();
+    $('#pageData').html('');
+    $('.search-bar').css('height', '100%');
+});
+$('#searchName').keyup(function () {
+    let name = this.value
+    if (name.length >= 2) {
+        searchMealByName(name)
+    }
+
+
+})
+$('#categoryTag').click(function () {
+    $('.search-bar').css('height', '0');
+
+    closeNav();
+    listCategories()
+})
+$('#areaTag').click(function () {
+    $('.search-bar').css('height', '0');
+
+    closeNav();
+    getAreas();
+
+})
+$('#searchLetter').keyup(function () {
+   let firstLetter = this.value
+    if (firstLetter.length !== 0 ){
+        getHomeMeals(`search.php?f=${firstLetter}`)
+    }
+
+})
+$('#ingTag').click(function () {
+    closeNav()
+    filterIngredients()
+})
+$('#contactTag').click(function () {
+    $('.search-bar').css('height', '0');
+
+    closeNav()
+    showForm()
+
+})
+
+// ***********************************************
+
+// End of code
+// Created by Eng.Abdallah Osama Elhanafy
+
